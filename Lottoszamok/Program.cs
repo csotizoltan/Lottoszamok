@@ -18,15 +18,34 @@ namespace Lottoszamok
         static List<LotteryNumbers> lottoszamok = new List<LotteryNumbers>();
         static List<int> ownNumbers = new List<int>();
 
-        //static int[] ownNumbers = new int[5];
 
         static void Main(string[] args)
         {
+            Welcome();
             FileRead();
-            UserInput();
+            UserInput(1, "az első");
+            UserInput(2, "a második");
+            UserInput(3, "a harmadik");
+            UserInput(4, "a negyedik");
+            UserInput(5, "az ötödik");
             Result();
 
             Console.ReadKey();
+        }
+
+
+        static void Welcome()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Ötöslottó számok\n");
+            Console.ResetColor();
+
+            Console.WriteLine("Add meg az öt számodat, majd láthatod,\n" +
+                "hogy hány találatod lett volna az Ötöslottó sorsolások kezdete óta.\n");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Csak 1 és 90 közötti számok lehetnek.\n\n");
+            Console.ResetColor();
         }
 
 
@@ -48,31 +67,20 @@ namespace Lottoszamok
         }
 
 
-        static void UserInput()
+        static void UserInput(int OwnNbr, string which)
         {
-            int OwnNbr1, OwnNbr2, OwnNbr3, OwnNbr4, OwnNbr5;
-
             bool included = false;
 
-
             do
             {
-                Console.WriteLine("Mi az első szám?");
-                OwnNbr1 = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Melyik " + which + " szám? ");
+                OwnNbr = Convert.ToInt32(Console.ReadLine());
 
-            } while (!(OwnNbr1 > 0 && OwnNbr1 < 91));
-
-            ownNumbers.Add(OwnNbr1);
-
-
-            do
-            {
-                Console.WriteLine("Mi a második szám?");
-                OwnNbr2 = Convert.ToInt32(Console.ReadLine());
-
-                if (ownNumbers.Contains(OwnNbr2))
+                if (ownNumbers.Contains(OwnNbr))
                 {
-                    Console.WriteLine("A " + OwnNbr2 + " számot egyszer már megadad!");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("A " + OwnNbr + " számot egyszer már megadad!\n");
+                    Console.ResetColor();
                     included = true;
                 }
 
@@ -81,72 +89,9 @@ namespace Lottoszamok
                     included = false;
                 }
 
-            } while (!(OwnNbr2 > 0 && OwnNbr2 < 91 && included == false)); // OwnNumber2 <= 0 || OwnNumber2 >= 91 || !(included == false)
+            } while (!(OwnNbr > 0 && OwnNbr < 91 && included == false)); // OwnNumber2 <= 0 || OwnNumber2 >= 91 || !(included == false)
 
-            ownNumbers.Add(OwnNbr2);
-
-
-            do
-            {
-                Console.WriteLine("Mi a hamradik szám?");
-                OwnNbr3 = Convert.ToInt32(Console.ReadLine());
-
-                if (ownNumbers.Contains(OwnNbr3))
-                {
-                    Console.WriteLine("A " + OwnNbr3 + " számot egyszer már megadad!");
-                    included = true;
-                }
-
-                else
-                {
-                    included = false;
-                }
-
-            } while (!(OwnNbr3 > 0 && OwnNbr3 < 91 && included == false));
-
-            ownNumbers.Add(OwnNbr3);
-
-
-            do
-            {
-                Console.WriteLine("Mi a negyedik szám?");
-                OwnNbr4 = Convert.ToInt32(Console.ReadLine());
-
-                if (ownNumbers.Contains(OwnNbr4))
-                {
-                    Console.WriteLine("A " + OwnNbr4 + " számot egyszer már megadad!");
-                    included = true;
-                }
-
-                else
-                {
-                    included = false;
-                }
-
-            } while (!(OwnNbr4 > 0 && OwnNbr4 < 91 && included == false));
-
-            ownNumbers.Add(OwnNbr4);
-
-
-            do
-            {
-                Console.WriteLine("Mi a ötödik szám?");
-                OwnNbr5 = Convert.ToInt32(Console.ReadLine());
-
-                if (ownNumbers.Contains(OwnNbr5))
-                {
-                    Console.WriteLine("A " + OwnNbr5 + " számot egyszer már megadad!");
-                    included = true;
-                }
-
-                else
-                {
-                    included = false;
-                }
-
-            } while (!(OwnNbr5 > 0 && OwnNbr5 < 91 && included == false));
-
-            ownNumbers.Add(OwnNbr5);
+            ownNumbers.Add(OwnNbr);
 
             ownNumbers.Sort(); // Tömbnél: Array.Sort(ownNumbers);
         }
@@ -219,10 +164,12 @@ namespace Lottoszamok
                 }
             }
 
-            Console.WriteLine("A kettes találatok száma: " + kettes);
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("\nA kettes találatok száma: " + kettes);
             Console.WriteLine("A hármas találatok száma: " + harmas);
             Console.WriteLine("A négyes találatok száma: " + negyes);
             Console.WriteLine("A ötös találatok száma: " + otos);
+            Console.ResetColor();
         }
     }
 }
