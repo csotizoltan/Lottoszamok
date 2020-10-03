@@ -209,6 +209,41 @@ namespace Lottoszamok
             }
 
             Console.WriteLine("Ötös találatok száma: " + otostalalat);
+
+
+
+            // További próbálkozások
+
+            // 1. megoldási kísérlet
+
+
+            int hitsTwo = 0;
+
+            for (int i = 0; i < lottoszamok.Count; i++)
+            {
+                if (lottoszamok.Any(item => ownNumbers.Contains(item.Number1)))
+                {
+                    hitsTwo++;
+                }
+            }
+
+            Console.WriteLine("A kettes találatok száma" + hitsTwo);
+
+
+            // 2. megolássi kísérlet
+
+
+            int a = 0;
+
+            foreach (var item in lottoszamok)
+            {
+                if (lottoszamok.Any(aa => ownNumbers.Contains(aa.Number1)))
+                {
+                    a++;
+                }
+            }
+
+            Console.WriteLine("Kettes találatok száma: " + a);
         }
     }
 }
