@@ -220,7 +220,7 @@ namespace Lottoszamok
 
             //int result = lottoszamok[0].SelectMany(list => list).Distinct().Count();
 
-            int hitsTwo = 0;
+            //int hitsTwo = 0;
 
             //if (lottoszamok.Any(item => ownNumbers.Contains(item.Number1)))
             //{
@@ -271,82 +271,157 @@ namespace Lottoszamok
             //lottoszamok. collection = (lottoszamok)myObject;
 
 
-            Console.WriteLine(ownNumbers2.Count);
+            //Console.WriteLine(ownNumbers2.Count);
 
-            Console.WriteLine(ownNumbers2[0].Number1);
+            //Console.WriteLine(ownNumbers2[0].Number1);
 
-            //Console.WriteLine("\n mia " + ownNumbers2[0]);
+            ////Console.WriteLine("\n mia " + ownNumbers2[0]);
 
-            bool sss = lottoszamok.Contains(ownNumbers2[0]);
+            //bool sss = lottoszamok.Contains(ownNumbers2[0]);
 
-            Console.WriteLine("ssssss" + sss);
+            //Console.WriteLine("ssssss" + sss);
 
-            var firstNotSecond = lottoszamok.Union(ownNumbers2).ToList().Count;
-            //var secondNotFirst = list2.Except(list1).ToList();
+            //var firstNotSecond = lottoszamok.Union(ownNumbers2).ToList().Count;
+            ////var secondNotFirst = list2.Except(list1).ToList();
 
-            Console.WriteLine("\naaaaaaaaaaaa: " + firstNotSecond);
+            //Console.WriteLine("\naaaaaaaaaaaa: " + firstNotSecond);
 
-            //var ssss = lottoszamok.Contains(ownNumbers2[4]);
+            ////var ssss = lottoszamok.Contains(ownNumbers2[4]);
 
-            Console.WriteLine(ownNumbers2[0].Kiir());
-            Console.WriteLine(lottoszamok[0].Kiir());
+            //Console.WriteLine(ownNumbers2[0].Kiir());
+            //Console.WriteLine(lottoszamok[0].Kiir());
 
-            int db = 0;
+            //int db = 0;
 
-            for (int i = 0; i < lottoszamok.Count; i++)
-            {
-                if (ownNumbers2[0].Number1 == lottoszamok[i].Number1)
-                {
-                     db++;
-                }
-               
-            }
+            //for (int i = 0; i < lottoszamok.Count; i++)
+            //{
+            //    if (ownNumbers2[0].Number1 == lottoszamok[i].Number1)
+            //    {
+            //         db++;
+            //    }
+
+            //}
 
             //var aaaas = lottoszamok[1].Number1.Find(11);
 
-            var aaaaas = lottoszamok.Where(item => item.Number1 == 23).Count();
+            //var aaaaas = lottoszamok.Where(item => item.Number1 == 23).Count();
 
-            Console.WriteLine(aaaaas);
+            //Console.WriteLine(aaaaas);
 
-            Console.WriteLine(db);
+            //Console.WriteLine(db);
 
-            if (lottoszamok.Contains(new LotteryNumbers(16, 61, 71, 77, 89)))
+            //if (lottoszamok.Contains(new LotteryNumbers(16, 61, 71, 77, 89)))
+            //{
+            //    Console.WriteLine("KKKKKKK");
+            //}
+
+            //else
+            //{
+            //    Console.WriteLine("nem");
+            //}
+
+
+
+            ////lottoszamok.Add(new LotteryNumbers(16, 61, 71, 77, 89));
+
+            ////var awww = lottoszamok.Contains(new LotteryNumbers(16, 61, 71, 77, 89));
+
+            ////var aaa = lottoszamok.FindIndex(x => x.Number1 == 16 && x.Number2 == 61);
+            //var aaa = lottoszamok.Exists(x => x.Number1 == 16 && x.Number2 == 61);
+
+            ////Console.WriteLine("Cont: " + awww);
+            //Console.WriteLine("Find: " + aaa);
+
+            //Console.WriteLine("kiir");
+            //Console.WriteLine(lottoszamok[3315].Kiir());
+
+            List<int> talalatokLista = new List<int>();
+
+
+            foreach (var egyHuzas in lottoszamok)
+               
             {
-                Console.WriteLine("KKKKKKK");
+                int talalat = 0;
+                foreach (var tippeltSzam in ownNumbers)
+                {
+                    if (egyHuzas.Number1 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number2 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number3 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number4 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number5 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+                }
+
+                //Console.WriteLine("A.. " + talalat);
+                talalatokLista.Add(talalat);
+
+
+
             }
 
-            else
+
+            int kettes = 0;
+            int harmas = 0;
+            int negyes = 0;
+            int otos = 0;
+
+
+            for (int i = 0; i < talalatokLista.Count; i++)
             {
-                Console.WriteLine("nem");
+                if (talalatokLista[i] == 2)
+                {
+                    kettes++;
+                }
+
+                else if (talalatokLista[i] == 3)
+                {
+                    harmas++;
+                }
+
+                else if (talalatokLista[i] == 4)
+                {
+                    negyes++;
+                }
+
+                else if (talalatokLista[i] == 5)
+                {
+                    otos++;
+                }
             }
-
-
-            
-            lottoszamok.Add(new LotteryNumbers(16, 61, 71, 77, 89));
-
-            var awww = lottoszamok.Contains(new LotteryNumbers(16, 61, 71, 77, 89));
-
-            //var aaa = lottoszamok.FindIndex(x => x.Number1 == 16 && x.Number2 == 61);
-            var aaa = lottoszamok.Exists(x => x.Number1 == 16 && x.Number2 == 61);
-
-            Console.WriteLine("Cont: " + awww);
-            Console.WriteLine("Find: " + aaa);
-
-            Console.WriteLine("kiir");
-            Console.WriteLine(lottoszamok[3315].Kiir());
+            Console.WriteLine("A kettes találatk száma: " + kettes);
 
 
 
-            var matches = lottoszamok.Where(p => p.Number1 == 16).ToList();
+            Console.WriteLine();
 
-            Console.WriteLine("új"  + matches);
+            ////var matches = lottoszamok.Where(p => p.Number1 == 16).ToList();
 
-            List<LotteryNumbers> results = lottoszamok.FindAll(x => x.Number1 == 1);
+            ////Console.WriteLine("új"  + matches);
 
-            for (int i = 0; i < results.Count; i++)
-            {
-                Console.WriteLine(i + ",");
-            }
+            //List<LotteryNumbers> results = lottoszamok.FindAll(x => x.Number1 == 1);
+
+            //for (int i = 0; i < results.Count; i++)
+            //{
+            //    Console.WriteLine(i + ",");
+            //}
 
         }
     }
