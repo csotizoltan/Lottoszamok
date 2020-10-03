@@ -148,102 +148,81 @@ namespace Lottoszamok
 
             ownNumbers.Add(OwnNbr5);
 
-
             ownNumbers.Sort(); // Tömbnél: Array.Sort(ownNumbers);
         }
 
 
         static void Result() {
 
-            int kettestalalat = 0;
+            List<int> ResultLista = new List<int>();
 
-            for (int i = 0; i < lottoszamok.Count; i++)
+            foreach (var egyHuzas in lottoszamok)
             {
-                if (lottoszamok[i].Number1 == ownNumbers[1] && lottoszamok[i].Number2 == ownNumbers[2])
+                int talalat = 0;
+                foreach (var tippeltSzam in ownNumbers)
                 {
-                    kettestalalat++;
+                    if (egyHuzas.Number1 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number2 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number3 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number4 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+
+                    else if (egyHuzas.Number5 == tippeltSzam)
+                    {
+                        talalat++;
+                    }
+                }
+
+                ResultLista.Add(talalat);
+            }
+
+
+            int kettes = 0;
+            int harmas = 0;
+            int negyes = 0;
+            int otos = 0;
+
+            for (int i = 0; i < ResultLista.Count; i++)
+            {
+                if (ResultLista[i] == 2)
+                {
+                    kettes++;
+                }
+
+                else if (ResultLista[i] == 3)
+                {
+                    harmas++;
+                }
+
+                else if (ResultLista[i] == 4)
+                {
+                    negyes++;
+                }
+
+                else if (ResultLista[i] == 5)
+                {
+                    otos++;
                 }
             }
 
-            Console.WriteLine("Kettes találatok száma: " + kettestalalat);
-
-
-            int harmastalalat = 0;
-
-            for (int i = 0; i < lottoszamok.Count; i++)
-            {
-                if (lottoszamok[i].Number1 == ownNumbers[1] && lottoszamok[i].Number2 == ownNumbers[2] &&
-                    lottoszamok[i].Number3 == ownNumbers[3])
-                {
-                    harmastalalat++;
-                }
-            }
-
-            Console.WriteLine("Hármas találatok száma: " + harmastalalat);
-
-
-            int negyestalalat = 0;
-
-            for (int i = 0; i < lottoszamok.Count; i++)
-            {
-                if (lottoszamok[i].Number1 == ownNumbers[1] && lottoszamok[i].Number2 == ownNumbers[2] &&
-                    lottoszamok[i].Number3 == ownNumbers[3] && lottoszamok[i].Number4 == ownNumbers[4])
-                {
-                    negyestalalat++;
-                }
-            }
-
-            Console.WriteLine("Négyes találatok száma: " + negyestalalat);
-
-
-            int otostalalat = 0;
-
-            for (int i = 0; i < lottoszamok.Count; i++)
-            {
-                if (lottoszamok[i].Number1 == ownNumbers[1] && lottoszamok[i].Number2 == ownNumbers[2] &&
-                    lottoszamok[i].Number3 == ownNumbers[3] && lottoszamok[i].Number4 == ownNumbers[4] &&
-                    lottoszamok[i].Number5 == ownNumbers[5])
-                {
-                    otostalalat++;
-                }
-            }
-
-            Console.WriteLine("Ötös találatok száma: " + otostalalat);
-
-
-
-            // További próbálkozások
-
-            // 1. megoldási kísérlet
-
-
-            int hitsTwo = 0;
-
-            for (int i = 0; i < lottoszamok.Count; i++)
-            {
-                if (lottoszamok.Any(item => ownNumbers.Contains(item.Number1)))
-                {
-                    hitsTwo++;
-                }
-            }
-
-            Console.WriteLine("A kettes találatok száma" + hitsTwo);
-
-
-            // 2. megolássi kísérlet
-
-
-            int a = 0;
-
-            foreach (var item in lottoszamok)
-            {
-                if (lottoszamok.Any(aa => ownNumbers.Contains(aa.Number1)))
-                {
-                    a++;
-                }
-            }
-
-            Console.WriteLine("Kettes találatok száma: " + a);
+            Console.WriteLine("A kettes találatok száma: " + kettes);
+            Console.WriteLine("A hármas találatok száma: " + harmas);
+            Console.WriteLine("A négyes találatok száma: " + negyes);
+            Console.WriteLine("A ötös találatok száma: " + otos);
         }
     }
 }
